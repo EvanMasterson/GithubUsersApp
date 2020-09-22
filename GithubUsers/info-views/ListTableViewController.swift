@@ -9,8 +9,17 @@ import UIKit
 
 class ListTableViewController: UITableViewController {
 
-  var data: [User] = []
-  
+  private var datasource: [User] = []
+
+  init(datasource: [User]) {
+    super.init(style: .plain)
+    self.datasource = datasource
+  }
+
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
     title = "User List"
@@ -28,14 +37,14 @@ class ListTableViewController: UITableViewController {
   }
 
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return data.count
+    return datasource.count
   }
 
 
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "listCell", for: indexPath) as! ListTableViewCell
     cell.showsReorderControl = true
-    cell.configureWithModel(model: data[indexPath.row])
+    cell.configureWithModel(model: datasource[indexPath.row])
 
     return cell
   }
@@ -44,16 +53,16 @@ class ListTableViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
         // Delete the row from the data source
-      data.remove(at: indexPath.row)
+      datasource.remove(at: indexPath.row)
       tableView.deleteRows(at: [indexPath], with: .fade)
     }
   }
 
   // Override to support rearranging the table view.
   override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-    let movingObject = data[sourceIndexPath.row]
-    data.remove(at: sourceIndexPath.row)
-    data.insert(movingObject, at: destinationIndexPath.row)
+    let movingObject = datasource[sourceIndexPath.row]
+    datasource.remove(at: sourceIndexPath.row)
+    datasource.insert(movingObject, at: destinationIndexPath.row)
   }
 
   // Override to support conditional rearranging of the table view.

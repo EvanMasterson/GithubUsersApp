@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ListTableViewCell: UITableViewCell {
 
@@ -18,9 +19,8 @@ class ListTableViewCell: UITableViewCell {
 
   func configureWithModel(model: User) {
     let imageUrl = URL(string: model.avatarUrl)!
-    let imageData = try! Data(contentsOf: imageUrl)
     nameLabel.text = model.name
-    avatarImage.image = UIImage(data: imageData)
+    avatarImage.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "github"), options: [.highPriority, .scaleDownLargeImages], context: nil)
   }
     
 }

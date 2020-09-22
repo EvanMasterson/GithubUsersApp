@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -24,6 +24,9 @@
 		7DF2076C251A43460055E584 /* SearchResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF2076B251A43460055E584 /* SearchResultTests.swift */; };
 		7DF20771251A44C70055E584 /* searchResultSuccess.json in Resources */ = {isa = PBXBuildFile; fileRef = 7DF20770251A44C70055E584 /* searchResultSuccess.json */; };
 		7DF20777251A47620055E584 /* searchResultError.json in Resources */ = {isa = PBXBuildFile; fileRef = 7DF20776251A47620055E584 /* searchResultError.json */; };
+		7DF20787251A6A310055E584 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 7DF20786251A6A310055E584 /* Lottie */; };
+		7DF2078D251A6AD50055E584 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 7DF2078C251A6AD50055E584 /* loading.json */; };
+		7DF20796251A7F7C0055E584 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 7DF20795251A7F7C0055E584 /* SDWebImage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +70,7 @@
 		7DF2076B251A43460055E584 /* SearchResultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTests.swift; sourceTree = "<group>"; };
 		7DF20770251A44C70055E584 /* searchResultSuccess.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = searchResultSuccess.json; sourceTree = "<group>"; };
 		7DF20776251A47620055E584 /* searchResultError.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = searchResultError.json; sourceTree = "<group>"; };
+		7DF2078C251A6AD50055E584 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +78,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DF20796251A7F7C0055E584 /* SDWebImage in Frameworks */,
+				7DF20787251A6A310055E584 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,6 +123,7 @@
 		7DF206342518F3360055E584 /* GithubUsers */ = {
 			isa = PBXGroup;
 			children = (
+				7DF2078B251A6AC30055E584 /* resources */,
 				7DF206C82519DFB80055E584 /* info-views */,
 				7DF206BC251940B60055E584 /* services */,
 				7DF206B02519372D0055E584 /* models */,
@@ -195,6 +202,14 @@
 			path = resources;
 			sourceTree = "<group>";
 		};
+		7DF2078B251A6AC30055E584 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				7DF2078C251A6AD50055E584 /* loading.json */,
+			);
+			path = resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -211,6 +226,10 @@
 			dependencies = (
 			);
 			name = GithubUsers;
+			packageProductDependencies = (
+				7DF20786251A6A310055E584 /* Lottie */,
+				7DF20795251A7F7C0055E584 /* SDWebImage */,
+			);
 			productName = GithubUsers;
 			productReference = 7DF206322518F3360055E584 /* GithubUsers.app */;
 			productType = "com.apple.product-type.application";
@@ -282,6 +301,10 @@
 				Base,
 			);
 			mainGroup = 7DF206292518F3360055E584;
+			packageReferences = (
+				7DF20785251A6A300055E584 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				7DF20794251A7F7C0055E584 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+			);
 			productRefGroup = 7DF206332518F3360055E584 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -300,6 +323,7 @@
 			files = (
 				7DF206E82519E1780055E584 /* ListTableViewController.xib in Resources */,
 				7DF206422518F3380055E584 /* LaunchScreen.storyboard in Resources */,
+				7DF2078D251A6AD50055E584 /* loading.json in Resources */,
 				7DF206A62519284B0055E584 /* ViewController.xib in Resources */,
 				7DF2063F2518F3380055E584 /* Assets.xcassets in Resources */,
 				7DF206DE2519E08D0055E584 /* ListTableViewCell.xib in Resources */,
@@ -417,6 +441,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -478,6 +503,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -661,6 +687,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7DF20785251A6A300055E584 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.8;
+			};
+		};
+		7DF20794251A7F7C0055E584 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7DF20786251A6A310055E584 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7DF20785251A6A300055E584 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+		7DF20795251A7F7C0055E584 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7DF20794251A7F7C0055E584 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7DF2062A2518F3360055E584 /* Project object */;
 }
