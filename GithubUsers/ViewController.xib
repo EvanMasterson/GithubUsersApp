@@ -19,15 +19,31 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search by username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w6l-Pi-2ia">
-                    <rect key="frame" x="68" y="431" width="188" height="34"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search for your favourite GitHub users below!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UOU-bQ-5bU">
+                    <rect key="frame" x="16" y="60" width="382" height="57.5"/>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="github" translatesAutoresizingMaskIntoConstraints="NO" id="8kE-3K-73h">
+                    <rect key="frame" x="147" y="133.5" width="120" height="120"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="120" id="D7u-wW-dGd"/>
+                        <constraint firstAttribute="height" constant="120" id="xwg-lH-IXs"/>
+                    </constraints>
+                </imageView>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search by username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w6l-Pi-2ia">
+                    <rect key="frame" x="127" y="269.5" width="160" height="34"/>
+                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <action selector="textFieldDidEndOnExit:" destination="-1" eventType="editingDidEndOnExit" id="3rm-gc-kmu"/>
+                    </connections>
                 </textField>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bbx-LI-dr5">
-                    <rect key="frame" x="306" y="437" width="20" height="22"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bbx-LI-dr5">
+                    <rect key="frame" x="295" y="275.5" width="20" height="22"/>
+                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <state key="normal" image="magnifyingglass" catalog="system"/>
                     <connections>
                         <action selector="didTapSearchButton:" destination="-1" eventType="touchUpInside" id="vML-Aw-HP5"/>
@@ -36,10 +52,22 @@
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="Bbx-LI-dr5" firstAttribute="leading" secondItem="w6l-Pi-2ia" secondAttribute="trailing" constant="8" id="6mS-IS-rYs"/>
+                <constraint firstItem="8kE-3K-73h" firstAttribute="centerX" secondItem="UOU-bQ-5bU" secondAttribute="centerX" id="DZG-f1-Mec"/>
+                <constraint firstItem="w6l-Pi-2ia" firstAttribute="top" secondItem="8kE-3K-73h" secondAttribute="bottom" constant="16" id="EGj-MF-Zg6"/>
+                <constraint firstItem="UOU-bQ-5bU" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="MGz-fN-rpO"/>
+                <constraint firstItem="8kE-3K-73h" firstAttribute="top" secondItem="UOU-bQ-5bU" secondAttribute="bottom" constant="16" id="Skq-Eg-aTK"/>
+                <constraint firstItem="UOU-bQ-5bU" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="VSr-Yw-8Zc"/>
+                <constraint firstAttribute="trailing" secondItem="UOU-bQ-5bU" secondAttribute="trailing" constant="16" id="YVN-pf-Nuv"/>
+                <constraint firstItem="w6l-Pi-2ia" firstAttribute="centerX" secondItem="8kE-3K-73h" secondAttribute="centerX" id="ulD-wc-KGc"/>
+                <constraint firstItem="Bbx-LI-dr5" firstAttribute="centerY" secondItem="w6l-Pi-2ia" secondAttribute="centerY" id="x0T-Np-vnU"/>
+            </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="87.723214285714278"/>
         </view>
     </objects>
     <resources>
+        <image name="github" width="75" height="75"/>
         <image name="magnifyingglass" catalog="system" width="32" height="32"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

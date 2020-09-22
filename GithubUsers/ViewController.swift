@@ -13,16 +13,43 @@ class ViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.title = "Home"
+    title = "Home"
   }
 
   @IBAction func didTapSearchButton(_ sender: Any) {
+    makeSearch()
+  }
+
+  @IBAction func textFieldDidEndOnExit(_ sender: Any) {
+    makeSearch()
+  }
+
+  // MARK: - Private helper functions
+
+  private func makeSearch() {
     SearchService().search(userName: textfield.text!) { (result, error) in
       if result != nil {
-        print(result!.items)
+        self.navigateWithResults(results: result!.items!)
       } else {
-        print(error!)
+        self.displayAlert(error: error!)
       }
+    }
+  }
+
+  private func navigateWithResults(results: [User]) {
+    DispatchQueue.main.async {
+      let listViewController = ListTableViewController()
+      listViewController.data = results
+      self.navigationController?.pushViewController(listViewController, animated: true)
+    }
+  }
+
+  private func displayAlert(error: String) {
+    DispatchQueue.main.async {
+      let alertController = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+      let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+      alertController.addAction(action)
+      self.present(alertController, animated: true, completion: nil)
     }
   }
 

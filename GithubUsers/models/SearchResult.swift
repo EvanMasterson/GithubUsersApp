@@ -8,7 +8,13 @@
 import Foundation
 
 struct SearchResult: Decodable {
-  let items: [User]
+  enum CodingKeys: String, CodingKey {
+    case items
+    case errorMessage = "message"
+  }
+  
+  let items: [User]?
+  let errorMessage: String?
 }
 
 struct User: Decodable {
