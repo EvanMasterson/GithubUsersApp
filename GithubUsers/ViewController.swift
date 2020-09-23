@@ -40,17 +40,15 @@ class ViewController: UIViewController {
   }
 
   private func makeSearch() {
-    animationContainer.isHidden = false
-    loadingAnimationView?.play()
+    playAnimation(play: true)
 
-    SearchService().search(userName: textfield.text!) { (result, error) in
+    SearchService().search(userName: textfield.text!) { [weak self] (result, error) in
       if result != nil {
-        self.navigateWithResults(results: result!.items!)
+        self?.navigateWithResults(results: result!.items!)
       } else {
-        self.displayAlert(error: error!)
+        self?.displayAlert(error: error!)
       }
-      self.animationContainer.isHidden = true
-      self.loadingAnimationView?.stop()
+      self?.playAnimation(play: false)
     }
   }
 
@@ -67,6 +65,20 @@ class ViewController: UIViewController {
       let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
       alertController.addAction(action)
       self.present(alertController, animated: true, completion: nil)
+    }
+  }
+
+  private func playAnimation(play: Bool) {
+    let animationViewAlpha: CGFloat = play ? 1.0 : 0.0
+
+    UIView.animate(withDuration: 0.5) {
+      self.animationContainer.alpha = animationViewAlpha
+    }
+
+    if play {
+      loadingAnimationView?.play()
+    } else {
+      loadingAnimationView?.stop()
     }
   }
 
