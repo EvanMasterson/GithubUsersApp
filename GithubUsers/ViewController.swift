@@ -71,8 +71,10 @@ class ViewController: UIViewController {
   private func playAnimation(play: Bool) {
     let animationViewAlpha: CGFloat = play ? 1.0 : 0.0
 
-    UIView.animate(withDuration: 0.5) {
-      self.animationContainer.alpha = animationViewAlpha
+    DispatchQueue.main.async {
+      UIView.animate(withDuration: 0.5) {
+        self.animationContainer.alpha = animationViewAlpha
+      }
     }
 
     if play {

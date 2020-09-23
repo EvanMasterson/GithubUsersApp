@@ -48,7 +48,7 @@ class DetailViewController: UIViewController {
     avatarImage.sd_setImage(with: URL(string: model!.avatarUrl), placeholderImage: UIImage(named: "github"), options: [.highPriority, .scaleDownLargeImages], context: nil)
     nameLabel.text = model!.name
 
-    model?.fetchCounts(completion: { [weak self] in
+    model?.fetchCounts(searchService: SearchService(), completion: { [weak self] in
       self?.followersLabel.text = String(format: "#%@", String((self?.model!.followersCount)!))
       self?.followingLabel.text = String(format: "#%@", String((self?.model!.followingCount)!))
       self?.reposLabel.text = String(format: "#%@", String((self?.model!.reposCount)!))
@@ -61,9 +61,11 @@ class DetailViewController: UIViewController {
     let infoViewAlpha: CGFloat = play ? 0.0 : 1.0
     let animationViewAlpha: CGFloat = play ? 1.0 : 0.0
 
-    UIView.animate(withDuration: 0.5) {
-      self.infoView.alpha = infoViewAlpha
-      self.animationContainer.alpha = animationViewAlpha
+    DispatchQueue.main.async {
+      UIView.animate(withDuration: 0.5) {
+        self.infoView.alpha = infoViewAlpha
+        self.animationContainer.alpha = animationViewAlpha
+      }
     }
 
     if play {

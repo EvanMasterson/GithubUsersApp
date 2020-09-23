@@ -14,7 +14,7 @@ class SearchResultTests: XCTestCase {
 
   override func setUpWithError() throws {
     try super.setUpWithError()
-    try loadJsonFile(filename: "searchResultSuccess")
+    try loadJson(filename: "searchResultSuccess")
   }
 
   override func tearDownWithError() throws {
@@ -33,7 +33,7 @@ class SearchResultTests: XCTestCase {
   }
 
   func testGivenErrorJsonResponseWhenInitialisingThenUserObjectsShouldNotExist() throws {
-    try loadJsonFile(filename: "searchResultError")
+    try loadJson(filename: "searchResultError")
 
     let user = searchResult?.items?.first
     XCTAssertNil(user?.name)
@@ -41,17 +41,33 @@ class SearchResultTests: XCTestCase {
   }
 
   func testGivenSuccessfulJsonResponseWhenInitialisingThenErrorMessageShouldExist() throws {
-    try loadJsonFile(filename: "searchResultError")
+    try loadJson(filename: "searchResultError")
     
     let doesMessageContainText = searchResult!.errorMessage!.contains("API rate limit exceeded")
     XCTAssertNotNil(searchResult?.errorMessage)
     XCTAssertTrue(doesMessageContainText)
   }
 
-  func loadJsonFile(filename: String) throws {
+  func testGivenValidDataWhenFetchingCountsThenUserModelObjectsShouldBeCorrect() throws {
+    let mockSession = URLSessionMock()
+    let searchService = SearchService(session: mockSession)
+    let path = Bundle(for: SearchServiceTests.self).path(forResource: "followersResult", ofType: "json")
+    let mockData = try Data(contentsOf: URL(fileURLWithPath: path!), options: .mappedIfSafe)
+    mockSession.data = mockData
+
+    let user = searchResult?.items?.first
+    user?.fetchCounts(searchService: searchService, completion: {
+      XCTAssertEqual(user?.followersCount, 2)
+      XCTAssertEqual(user?.followingCount, 2)
+      XCTAssertEqual(user?.reposCount, 2)
+      XCTAssertEqual(user?.gistsCount, 2)
+    })
+  }
+
+  func loadJson(filename: String) throws {
     let path = Bundle(for: SearchResultTests.self).path(forResource: filename, ofType: "json")
-    let mockJsonData = try Data(contentsOf: URL(fileURLWithPath: path!), options: .mappedIfSafe)
-    searchResult = try JSONDecoder().decode(SearchResult.self, from: mockJsonData)
+    let mockData = try Data(contentsOf: URL(fileURLWithPath: path!), options: .mappedIfSafe)
+    searchResult = try JSONDecoder().decode(SearchResult.self, from: mockData)
   }
 
 }
