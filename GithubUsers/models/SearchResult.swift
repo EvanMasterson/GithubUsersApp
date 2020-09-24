@@ -33,22 +33,22 @@ class User: Decodable {
   func fetchCounts(searchService: SearchService, completion: @escaping () -> Void) {
     let dispatchGroup = DispatchGroup()
     dispatchGroup.enter()
-    searchService.retrieveCountFor(userName: name, url: .followersUrl) { [weak self] (count) in
+    searchService.retrieveCountFor(userName: name, urlType: .followersUrl) { [weak self] (count) in
       self?.followersCount = count!
       dispatchGroup.leave()
     }
     dispatchGroup.enter()
-    searchService.retrieveCountFor(userName: name, url: .followingUrl) { [weak self] (count) in
+    searchService.retrieveCountFor(userName: name, urlType: .followingUrl) { [weak self] (count) in
       self?.followingCount = count!
       dispatchGroup.leave()
     }
     dispatchGroup.enter()
-    searchService.retrieveCountFor(userName: name, url: .reposUrl) { [weak self] (count) in
+    searchService.retrieveCountFor(userName: name, urlType: .reposUrl) { [weak self] (count) in
       self?.reposCount = count!
       dispatchGroup.leave()
     }
     dispatchGroup.enter()
-    searchService.retrieveCountFor(userName: name, url: .gistsUrl) { [weak self] (count) in
+    searchService.retrieveCountFor(userName: name, urlType: .gistsUrl) { [weak self] (count) in
       self?.gistsCount = count!
       dispatchGroup.leave()
     }

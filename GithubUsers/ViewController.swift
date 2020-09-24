@@ -42,9 +42,10 @@ class ViewController: UIViewController {
   private func makeSearch() {
     playAnimation(play: true)
 
-    SearchService().search(userName: textfield.text!) { [weak self] (result, error) in
+    let searchText = textfield.text!
+    SearchService().search(userName: searchText) { [weak self] (result, error) in
       if result != nil {
-        self?.navigateWithResults(results: result!.items!)
+        self?.navigateWithResults(results: result!.items!, initialSearch: searchText)
       } else {
         self?.displayAlert(error: error!)
       }
@@ -52,9 +53,9 @@ class ViewController: UIViewController {
     }
   }
 
-  private func navigateWithResults(results: [User]) {
+  private func navigateWithResults(results: [User], initialSearch: String) {
     DispatchQueue.main.async {
-      let listViewController = ListTableViewController(datasource: results)
+      let listViewController = ListTableViewController(datasource: results, initialSearch: initialSearch)
       self.navigationController?.pushViewController(listViewController, animated: true)
     }
   }

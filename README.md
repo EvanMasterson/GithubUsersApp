@@ -26,3 +26,4 @@ Run the application
 ## Future Features
 * Implement authenticated requests to GitHub API to extend the amount of requests allowed in a period of time as GitHub has a low rate limit for unauthenticated requests.
 * Add GitHub link to the DetailViewController, for example making the avatar clickable to open web browser directing to the users GitHub page.
+* Ability to share link to GitHub profile

@@ -65,7 +65,7 @@ class SearchServiceTests: XCTestCase {
   func testGivenValidDataWhenRetrievingCountsThenCountShouldNotBeZero() throws {
     mockSession?.data = try loadMockData(filename: "followersResult")
 
-    searchService?.retrieveCountFor(userName: "name", url: .followersUrl, completion: { (count) in
+    searchService?.retrieveCountFor(userName: "name", urlType: .followersUrl, completion: { (count) in
       XCTAssertEqual(count, 2)
     })
   }
@@ -73,7 +73,7 @@ class SearchServiceTests: XCTestCase {
   func testGivenInvalidDataWhenRetrievingCountsThenCountShouldBeZero() throws {
     mockSession?.data = Data(bytes: [0, 0, 0, 0], count: 0)
 
-    searchService?.retrieveCountFor(userName: "name", url: .reposUrl, completion: { (count) in
+    searchService?.retrieveCountFor(userName: "name", urlType: .reposUrl, completion: { (count) in
       XCTAssertEqual(count, 0)
     })
   }
@@ -81,7 +81,7 @@ class SearchServiceTests: XCTestCase {
   func testGivenNilDataWhenRetrievingCountsThenCountShouldBeZero() throws {
     mockSession?.data = nil
 
-    searchService?.retrieveCountFor(userName: "name", url: .reposUrl, completion: { (count) in
+    searchService?.retrieveCountFor(userName: "name", urlType: .reposUrl, completion: { (count) in
       XCTAssertEqual(count, 0)
     })
   }
